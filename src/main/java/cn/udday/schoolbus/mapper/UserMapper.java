@@ -1,7 +1,7 @@
-package cn.udday.shoolbus.mapper;
+package cn.udday.schoolbus.mapper;
 
-import cn.udday.shoolbus.model.User;
-import cn.udday.shoolbus.model.UserVo;
+import cn.udday.schoolbus.model.User;
+import cn.udday.schoolbus.model.UserVo;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;

@@ -1,4 +1,4 @@
-package cn.udday.shoolbus.service;
+package cn.udday.schoolbus.service;
 
 import java.util.Map;
 

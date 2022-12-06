@@ -1,4 +1,4 @@
-package cn.udday.shoolbus.model;
+package cn.udday.schoolbus.model;
 
 public class Response<T> {
     private int code;

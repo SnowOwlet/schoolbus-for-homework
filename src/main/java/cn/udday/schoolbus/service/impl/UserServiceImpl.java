@@ -1,10 +1,10 @@
-package cn.udday.shoolbus.service.impl;
+package cn.udday.schoolbus.service.impl;
 
-import cn.udday.shoolbus.mapper.UserMapper;
-import cn.udday.shoolbus.model.Response;
-import cn.udday.shoolbus.model.User;
-import cn.udday.shoolbus.model.UserVo;
-import cn.udday.shoolbus.service.UserService;
+import cn.udday.schoolbus.mapper.UserMapper;
+import cn.udday.schoolbus.model.Response;
+import cn.udday.schoolbus.model.User;
+import cn.udday.schoolbus.model.UserVo;
+import cn.udday.schoolbus.service.UserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

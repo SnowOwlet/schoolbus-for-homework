@@ -1,4 +1,4 @@
-package cn.udday.shoolbus.model;
+package cn.udday.schoolbus.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

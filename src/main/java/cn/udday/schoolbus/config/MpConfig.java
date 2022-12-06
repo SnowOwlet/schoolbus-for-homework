@@ -1,4 +1,4 @@
-package cn.udday.shoolbus.config;
+package cn.udday.schoolbus.config;
 
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;

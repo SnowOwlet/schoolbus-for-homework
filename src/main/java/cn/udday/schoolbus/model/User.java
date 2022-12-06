@@ -1,7 +1,13 @@
-package cn.udday.shoolbus.model;
+package cn.udday.schoolbus.model;
 
-public class UserVo {
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
+@TableName(value = "sys_user")
+public class User {
     //用户ID
+    @TableId(type = IdType.AUTO)
     private Integer userId;
     //用户姓名
     private String userName;

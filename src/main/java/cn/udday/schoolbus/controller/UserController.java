@@ -1,6 +1,6 @@
-package cn.udday.shoolbus.controller;
+package cn.udday.schoolbus.controller;
 
-import cn.udday.shoolbus.service.UserService;
+import cn.udday.schoolbus.service.UserService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
