@@ -1,9 +1,12 @@
 package cn.udday.schoolbus.model;
 
+import com.alibaba.fastjson2.JSON;
+import lombok.Data;
+
+@Data
 public class Response<T> {
     private int code;
     private String msg;
-    private int pageTotal;
     private T data;
 
     /**
@@ -43,14 +46,6 @@ public class Response<T> {
         this.data = data;
     }
 
-    public Response(T data, Integer pageTotal) {
-
-        this.code = 0;
-        this.msg = "操作成功！";
-        this.pageTotal = pageTotal;
-        this.data = data;
-    }
-
     /**
      * 有数据返回，状态码为0，人为指定提示信息
      *
@@ -63,13 +58,22 @@ public class Response<T> {
         this.msg = msg;
         this.data = data;
     }
-
-    public int getPageTotal() {
-        return pageTotal;
+    public static Response error(String msg){
+        return new Response(-1,msg);
     }
-
-    public void setPageTotal(int pageTotal) {
-        this.pageTotal = pageTotal;
+    public static Response error(int code,String msg){
+        return new Response(code,msg);
+    }
+    public String toJson(){
+        return JSON.toJSONString(this);
+    }
+    @Override
+    public String toString() {
+        return "Response{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", data=" + data +
+                '}';
     }
 
     public int getCode() {
@@ -94,14 +98,5 @@ public class Response<T> {
 
     public void setData(T data) {
         this.data = data;
-    }
-
-    @Override
-    public String toString() {
-        return "Response{" +
-                "code=" + code +
-                ", msg='" + msg + '\'' +
-                ", data=" + data +
-                '}';
     }
 }
