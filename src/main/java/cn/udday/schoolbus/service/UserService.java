@@ -7,4 +7,8 @@ import java.util.Map;
 public interface UserService {
     Object login(String username,String password);
     Object register(String username,String password,String sex,String phone,Boolean isSuper);
+
+    Object loginOut(String token);
+
+    Object all(int pageNum,int pageSize,String username);
 }

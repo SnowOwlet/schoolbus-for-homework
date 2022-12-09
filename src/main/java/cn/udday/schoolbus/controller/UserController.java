@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.Map;
 
+import static cn.udday.schoolbus.config.Config.TOKEN;
+
 //@CrossOrigin
 @RestController
 @RequestMapping("/API/user/")
@@ -19,10 +21,10 @@ public class UserController {
     public Object login(@RequestBody Map<String, String> data) {
         String username = data.get("username");
         String password = data.get("password");
-        if (username.equals("") || password.equals("")){
+        if (username.equals("") || password.equals("")) {
             return Response.error("账号密码不能为空");
         }
-        Object res = userService.login(username,password);
+        Object res = userService.login(username, password);
         return res;
     }
 
@@ -34,12 +36,30 @@ public class UserController {
         String phone = data.get("phone");
         Boolean isSuper = Boolean.valueOf(data.get("is_super"));
 
-        if (username.equals("") ||password.equals("")){
+        if (username.equals("") || password.equals("")) {
             return Response.error("账号密码不能为空");
         }
-        if (sex.equals("")){ return Response.error("性别不能为空"); }
+        if (sex.equals("")) {
+            return Response.error("性别不能为空");
+        }
+        Object res = userService.register(username, password, sex, phone, isSuper);
+        return res;
+    }
 
-        Object res = userService.register(username,password,sex,phone,isSuper);
+    @GetMapping(value = "/login_out")
+    public Object loginOut(@RequestHeader(value = TOKEN) String token) {
+        Object res = userService.loginOut(token);
+        return res;
+    }
+
+    @GetMapping(value = "/all")
+    public Object all(@RequestBody Map<String, String> data) {
+        int pageNum = 1;
+        int pageSize = 20;
+        pageNum = Integer.parseInt(data.get("page_num"));
+        pageSize = Integer.parseInt(data.get("page_size"));
+        String userName = data.get("user_name");
+        Object res = userService.all(pageNum, pageSize, userName);
         return res;
     }
 }

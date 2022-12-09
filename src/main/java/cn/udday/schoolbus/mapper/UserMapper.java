@@ -22,4 +22,7 @@ public interface UserMapper extends BaseMapper<User> {
             "from sys_user u, sys_campus c " +
             "where u.campus_id=c.campus_id and ${ew.sqlSegment}")
     IPage<User> query(IPage<User> page, @Param("ew") Wrapper<User> wrapper);
+
+    @Select("select * from user where user_id = ${userId}")
+    User getUserById(int userId);
 }

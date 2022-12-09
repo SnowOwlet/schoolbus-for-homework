@@ -58,8 +58,17 @@ public class Response<T> {
         this.msg = msg;
         this.data = data;
     }
+
+    public static Response ok(String msg){
+        return new Response(0,msg);
+    }
+    /**
+     * 默认1为错误
+     * @param msg
+     * @return
+     */
     public static Response error(String msg){
-        return new Response(-1,msg);
+        return new Response(1,msg);
     }
     public static Response error(int code,String msg){
         return new Response(code,msg);
