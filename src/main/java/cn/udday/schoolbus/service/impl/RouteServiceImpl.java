@@ -45,18 +45,18 @@ public class RouteServiceImpl implements RouteService {
     @Override
     public Object allRoute(int pageNum, int pageSize, String beginSite, String endSite) {
         Page<Route> page = new Page<>(pageNum, pageSize);
-        if ((beginSite == null || beginSite == "") && (endSite == null || endSite == "")) {
+        if ((beginSite == null || beginSite.equals("")) && (endSite == null || endSite.equals(""))) {
             routeMapper.selectPage(page, null);
-        } else if ((beginSite == null || beginSite == "") && (endSite != null && endSite != "")) {
-            QueryWrapper<Route> qw = new QueryWrapper();
-            qw.like("r_begin_site", beginSite);
-            routeMapper.selectPage(page, qw);
-        } else if ((beginSite != null && beginSite != "") && (endSite == null || endSite == "")) {
-            QueryWrapper<Route> qw = new QueryWrapper();
+        } else if (beginSite == null || beginSite.equals("")) {
+            QueryWrapper<Route> qw = new QueryWrapper<>();
             qw.like("r_end_site", endSite);
             routeMapper.selectPage(page, qw);
+        } else if (endSite == null || endSite.equals("")) {
+            QueryWrapper<Route> qw = new QueryWrapper<>();
+            qw.like("r_begin_site", beginSite);
+            routeMapper.selectPage(page, qw);
         } else {
-            QueryWrapper<Route> qw = new QueryWrapper();
+            QueryWrapper<Route> qw = new QueryWrapper<>();
             qw
                 .like("r_begin_site", beginSite)
                 .or()

@@ -57,7 +57,7 @@ public class BusServiceImpl implements BusService {
     @Override
     public Object getAllBus(int pageNum, int pageSize, String busName) {
         Page<Bus> page = new Page<>(pageNum, pageSize);
-        if (busName == null || busName == "") {
+        if (busName == null || busName.equals("")) {
             busMapper.selectPage(page, null);
         } else {
             QueryWrapper<Bus> busQW = new QueryWrapper();
