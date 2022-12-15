@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-@Data
 @TableName(value = "schedule")
 public class Schedule {
     @TableId(type = IdType.AUTO)
@@ -15,7 +14,28 @@ public class Schedule {
     private Integer routeId;
     private String beginTime;
     private Integer busId;
+    private Float schedulePrice;
 
+    @Override
+    public String toString() {
+        return "Schedule{" +
+                "scheduleId=" + scheduleId +
+                ", beginSite='" + beginSite + '\'' +
+                ", endSite='" + endSite + '\'' +
+                ", routeId=" + routeId +
+                ", beginTime='" + beginTime + '\'' +
+                ", busId=" + busId +
+                ", schedulePrice=" + schedulePrice +
+                '}';
+    }
+
+    public Float getSchedulePrice() {
+        return schedulePrice;
+    }
+
+    public void setSchedulePrice(Float schedulePrice) {
+        this.schedulePrice = schedulePrice;
+    }
 
     public Integer getScheduleId() {
         return scheduleId;

@@ -22,7 +22,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Resource
     private RouteMapper routeMapper;
     @Override
-    public Object addSchedule(String beginSite, String endSite, String beginTime,int routeId, int busId) {
+    public Object addSchedule(String beginSite, String endSite, String beginTime,int routeId, int busId,Float schedulePrice) {
         Schedule schedule = new Schedule();
         schedule.setBeginSite(beginSite);
         schedule.setEndSite(endSite);
@@ -39,13 +39,13 @@ public class ScheduleServiceImpl implements ScheduleService {
             return Response.error("线路不存在");
         }
         schedule.setRouteId(routeId);
-
+        schedule.setSchedulePrice(schedulePrice);
         scheduleMapper.insert(schedule);
         return Response.ok("添加成功");
     }
 
     @Override
-    public Object changeSchedule(int scheduleId, String beginSite, String endSite, String beginTime,int routeId, int busId) {
+    public Object changeSchedule(int scheduleId, String beginSite, String endSite, String beginTime,int routeId, int busId,Float schedulePrice) {
         QueryWrapper<Schedule> scheduleQw = new QueryWrapper<>();
         scheduleQw.eq("schedule_id",scheduleId);
         if (scheduleMapper.selectOne(scheduleQw) == null) {
@@ -68,6 +68,7 @@ public class ScheduleServiceImpl implements ScheduleService {
             return Response.error("线路不存在");
         }
         schedule.setRouteId(routeId);
+        schedule.setSchedulePrice(schedulePrice);
         scheduleMapper.update(schedule,scheduleQw);
         return Response.ok("更改成功");
     }

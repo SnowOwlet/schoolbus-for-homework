@@ -12,24 +12,22 @@ import java.util.Map;
 public class BusController {
     @Resource(name = "bus")
     private BusService busService;
+
     @PostMapping("/add")
     public Object addBus(@RequestBody Map<String, String> data) {
         String busName = data.get("bus_name");
         if (busName == null || busName.equals("")) {
             return Response.error("校车名不能为空");
         }
-        Float busPrice = Float.valueOf(data.get("bus_price"));
-        if (busPrice == null || busPrice.equals("")) {
-            return Response.error("价钱不能为空");
-        }
 
         int busAllNum = Integer.valueOf(data.get("bus_all_num"));
         if (busAllNum <= 0) {
             return Response.error("总人数不能为0");
         }
-        Object res = busService.addBus(busName, busPrice, busAllNum);
+        Object res = busService.addBus(busName, busAllNum);
         return res;
     }
+
     @PostMapping("/change")
     public Object changeBus(@RequestBody Map<String, String> data) {
         int busId = Integer.valueOf(data.get("bus_id"));
@@ -43,11 +41,6 @@ public class BusController {
 
         String busState = data.get("bus_state");
 
-        Float busPrice = Float.valueOf(data.get("bus_price"));
-        if (busPrice == null || busPrice.equals("")) {
-            return Response.error("价钱不能为空");
-        }
-
         int busAllNum = Integer.valueOf(data.get("bus_all_num"));
 
         if (busAllNum <= 0) {
@@ -58,10 +51,11 @@ public class BusController {
         if (busNum < 0) {
             return Response.error("人数违规");
         }
-        Object res = busService.changeBus(busId, busName, busState, busPrice, busAllNum, busNum);
+        Object res = busService.changeBus(busId, busName, busState, busAllNum, busNum);
         return res;
     }
-    @GetMapping("/all")
+
+    @PostMapping("/all")
     public Object allBus(@RequestBody Map<String, String> data) {
         int pageNum = 1;
         int pageSize = 20;
@@ -71,13 +65,15 @@ public class BusController {
         Object res = busService.getAllBus(pageNum, pageSize, busName);
         return res;
     }
+
     @GetMapping("/{bus_id}")
     public Object oneBus(@PathVariable("bus_id") int busId) {
         Object res = busService.getOneBus(busId);
         return res;
     }
+
     @PostMapping("/delete")
-    public Object deleteBus(@RequestBody Map<String,String> data){
+    public Object deleteBus(@RequestBody Map<String, String> data) {
         int busId = Integer.parseInt(data.get("bus_id"));
         Object res = busService.deleteBus(busId);
         return res;

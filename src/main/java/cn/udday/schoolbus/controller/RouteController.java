@@ -39,7 +39,7 @@ public class RouteController {
         return res;
     }
 
-    @GetMapping("/all")
+    @PostMapping("/all")
     public Object allRoute(@RequestBody Map<String, String> data) {
         int pageNum = 1;
         int pageSize = 20;

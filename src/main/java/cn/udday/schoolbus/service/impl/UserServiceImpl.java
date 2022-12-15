@@ -90,6 +90,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Object change(String token,String password, String sex, String phone,String comment) {
+        User user = userMapper.getUserById(SchoolBusUtils.token2UserId(token));
+        if (password != null && !password.equals("")) user.setPassword(password);
+        if (sex != null && !sex.equals("")) user.setAvatar(sex);
+        if (phone != null && !phone.equals("")) user.setPhone(phone);
+        if (comment != null && !comment.equals("")) user.setComment(comment);
+        userMapper.updateById(user);
+        return Response.ok("更改成功");
+    }
+
+    @Override
     public Object loginOut(String token) {
         int userId = SchoolBusUtils.token2UserId(token);
         QueryWrapper<Token> tokenQW = new QueryWrapper<>();
@@ -107,15 +118,30 @@ public class UserServiceImpl implements UserService {
         return new PageResponse<>(page.getRecords(), (int) page.getPages());
     }
 
+    @Override
+    public Object one(String token) {
+        int userId = SchoolBusUtils.token2UserId(token);
+        QueryWrapper<User> qw = new QueryWrapper<>();
+        qw.eq("user_id",userId);
+        User user = userMapper.selectOne(qw);
+        if (user != null){
+            return new Response(user);
+        }else{
+            return Response.error("不存在该用户");
+        }
+    }
+
 
     private String creatToken(User user, Date date) {
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-        JwtBuilder builder = Jwts.builder().setHeaderParam("typ", "JWT") // 设置header
-                .setHeaderParam("alg", "HS256").setIssuedAt(date) // 设置签发时间
+        JwtBuilder builder = Jwts.builder().setHeaderParam("typ", "JWT")
+                .setHeaderParam("alg", "HS256").setIssuedAt(date)
                 .setExpiration(new Date(date.getTime() + 1000 * 60 * 60 * 24 * 3))
-                .claim("userid", String.valueOf(user.getUserId())) // 设置内容
-                .setIssuer(ISSUER)// 设置签发人
-                .signWith(signatureAlgorithm, KEY); // 签名，需要算法和key
+                .claim("user_id", String.valueOf(user.getUserId()))
+                .claim("is_super", String.valueOf(user.isSuper()))
+                .claim("user_name", String.valueOf(user.getUserName()))
+                .setIssuer(ISSUER)
+                .signWith(signatureAlgorithm, KEY);
         String jwt = builder.compact();
         return jwt;
     }

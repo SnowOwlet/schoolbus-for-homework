@@ -22,8 +22,10 @@ public class ScheduleController {
         int routeId = Integer.parseInt(data.get("route_id"));
         String beginTime = data.get("begin_time");
         if (beginTime == null || beginTime.equals("")) return Response.error("开始时间不能为空");
+        Float schedulePrice = Float.valueOf(data.get("schedule_price"));
+        if (schedulePrice == null || schedulePrice == 0.0) return Response.error("价格不能为空");
         int busId = Integer.parseInt(data.get("bus_id"));
-        Object res = scheduleService.addSchedule(beginSite,endSite,beginTime,routeId,busId);
+        Object res = scheduleService.addSchedule(beginSite,endSite,beginTime,routeId,busId,schedulePrice);
         return res;
     }
 
@@ -37,18 +39,20 @@ public class ScheduleController {
         int routeId = Integer.parseInt(data.get("route_id"));
         String beginTime = data.get("begin_time");
         if (beginTime == null || beginTime.equals("")) return Response.error("开始时间不能为空");
+        Float schedulePrice = Float.valueOf(data.get("schedule_price"));
+        if (schedulePrice == null || schedulePrice == 0.0) return Response.error("价格不能为空");
         int busId = Integer.parseInt(data.get("bus_id"));
-        Object res = scheduleService.changeSchedule(scheduleId,beginSite,endSite,beginTime,routeId,busId);
+        Object res = scheduleService.changeSchedule(scheduleId,beginSite,endSite,beginTime,routeId,busId,schedulePrice);
         return res;
     }
 
-    @GetMapping("/all")
+    @PostMapping("/all")
     public Object allSchedule(@RequestBody Map<String, String> data) {
         int pageNum = 1;
         int pageSize = 20;
         pageNum = Integer.parseInt(data.get("page_num"));
         pageSize = Integer.parseInt(data.get("page_size"));
-        String beginSite = data.get("start_site");
+        String beginSite = data.get("begin_site");
         String endSite = data.get("end_site");
         String busName = data.get("bus_name");
         Object res = scheduleService.allSchedule(pageNum,pageSize,beginSite,endSite,busName);

@@ -21,6 +21,8 @@ public class OrderVo {
     private String comment;
     //选择的详细
     private int scheduleId;
+    private Float schedulePrice;
+
     private String beginSite;
     private String endSite;
     private Integer routeId;
@@ -31,7 +33,6 @@ public class OrderVo {
     private Integer busId;
     private String busName;
     private String busState;
-    private Float busPrice;
     private Integer busAllNum;
     private Integer busNum;
     //预定时间
@@ -51,6 +52,7 @@ public class OrderVo {
                 ", isSuper=" + isSuper +
                 ", comment='" + comment + '\'' +
                 ", scheduleId=" + scheduleId +
+                ", schedulePrice=" + schedulePrice +
                 ", beginSite='" + beginSite + '\'' +
                 ", endSite='" + endSite + '\'' +
                 ", routeId=" + routeId +
@@ -61,7 +63,6 @@ public class OrderVo {
                 ", busId=" + busId +
                 ", busName='" + busName + '\'' +
                 ", busState='" + busState + '\'' +
-                ", busPrice=" + busPrice +
                 ", busAllNum=" + busAllNum +
                 ", busNum=" + busNum +
                 ", orderTime=" + orderTime +
@@ -139,6 +140,14 @@ public class OrderVo {
 
     public void setScheduleId(int scheduleId) {
         this.scheduleId = scheduleId;
+    }
+
+    public Float getSchedulePrice() {
+        return schedulePrice;
+    }
+
+    public void setSchedulePrice(Float schedulePrice) {
+        this.schedulePrice = schedulePrice;
     }
 
     public String getBeginSite() {
@@ -219,14 +228,6 @@ public class OrderVo {
 
     public void setBusState(String busState) {
         this.busState = busState;
-    }
-
-    public Float getBusPrice() {
-        return busPrice;
-    }
-
-    public void setBusPrice(Float busPrice) {
-        this.busPrice = busPrice;
     }
 
     public Integer getBusAllNum() {

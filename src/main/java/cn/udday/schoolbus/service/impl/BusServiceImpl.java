@@ -18,11 +18,10 @@ public class BusServiceImpl implements BusService {
     BusMapper busMapper;
 
     @Override
-    public Object addBus(String busName, Float busPrice, int busAllNum) {
+    public Object addBus(String busName, int busAllNum) {
         Bus bus = new Bus();
         bus.setBusName(busName);
         bus.setBusState("未满");
-        bus.setBusPrice(busPrice);
         bus.setBusAllNum(busAllNum);
         bus.setBusNum(0);
         busMapper.insert(bus);
@@ -42,14 +41,13 @@ public class BusServiceImpl implements BusService {
     }
 
     @Override
-    public Object changeBus(int busId, String busName, String busState, Float busPrice, int busAllNum, int busNum) {
+    public Object changeBus(int busId, String busName, String busState, int busAllNum, int busNum) {
         QueryWrapper<Bus> qw = new QueryWrapper<>();
         qw.eq("bus_id", busId);
         Bus bus = busMapper.selectOne(qw);
         if (bus == null) return Response.error("不存在该车");
         bus.setBusName(busName);
         bus.setBusState(busState);
-        bus.setBusPrice(busPrice);
         bus.setBusAllNum(busAllNum);
         bus.setBusNum(busNum);
         busMapper.update(bus, qw);

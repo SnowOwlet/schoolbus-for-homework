@@ -68,7 +68,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         //解析Token信息
         try {
             Claims claims = Jwts.parser().setSigningKey(KEY).parseClaimsJws(headerToken).getBody();
-            String tokenUserId = (String) claims.get("userid");
+            String tokenUserId = (String) claims.get("user_id");
             int itokenUserId = Integer.parseInt(tokenUserId);
             //根据客户Token查找数据库Token
             Token myToken = tokenMapper.findByUserId(itokenUserId);

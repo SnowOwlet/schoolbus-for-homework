@@ -8,6 +8,7 @@ import java.util.Map;
 
 import static cn.udday.schoolbus.config.Config.TOKEN;
 
+
 @RestController
 @RequestMapping("/API/order/")
 public class OrderController {
@@ -38,7 +39,7 @@ public class OrderController {
         return res;
     }
 
-    @GetMapping("/all")
+    @PostMapping("/all")
     public Object all(@RequestHeader(TOKEN) String token, @RequestBody Map<String,String> data){
         int pageNum = 1;
         int pageSize = 20;

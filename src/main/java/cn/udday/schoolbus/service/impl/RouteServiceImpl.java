@@ -30,7 +30,7 @@ public class RouteServiceImpl implements RouteService {
     @Override
     public Object changeRoute(int routeId, String beginSite, String endSite, String pathwaySite) {
         QueryWrapper<Route> qw = new QueryWrapper<>();
-        qw.eq("r_route_id", routeId);
+        qw.eq("route_id", routeId);
         Route route = routeMapper.selectOne(qw);
         if (route == null) {
             return Response.error("不存在此站点");

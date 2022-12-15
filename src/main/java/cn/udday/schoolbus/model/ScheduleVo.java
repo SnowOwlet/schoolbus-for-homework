@@ -4,16 +4,15 @@ public class ScheduleVo {
     private Integer scheduleId;
     private String beginSite;
     private String endSite;
+    private Float schedulePrice;
     private Integer routeId;
     private String rBeginSite;
     private String rEndSite;
     private String rPathwaySite;
     private String beginTime;
     private Integer busId;
-
     private String busName;
     private String busState;
-    private Float busPrice;
     private Integer busAllNum;
     private Integer busNum;
 
@@ -23,6 +22,7 @@ public class ScheduleVo {
                 "scheduleId=" + scheduleId +
                 ", beginSite='" + beginSite + '\'' +
                 ", endSite='" + endSite + '\'' +
+                ", schedulePrice=" + schedulePrice +
                 ", routeId=" + routeId +
                 ", rBeginSite='" + rBeginSite + '\'' +
                 ", rEndSite='" + rEndSite + '\'' +
@@ -31,7 +31,6 @@ public class ScheduleVo {
                 ", busId=" + busId +
                 ", busName='" + busName + '\'' +
                 ", busState='" + busState + '\'' +
-                ", busPrice=" + busPrice +
                 ", busAllNum=" + busAllNum +
                 ", busNum=" + busNum +
                 '}';
@@ -59,6 +58,14 @@ public class ScheduleVo {
 
     public void setEndSite(String endSite) {
         this.endSite = endSite;
+    }
+
+    public Float getSchedulePrice() {
+        return schedulePrice;
+    }
+
+    public void setSchedulePrice(Float schedulePrice) {
+        this.schedulePrice = schedulePrice;
     }
 
     public Integer getRouteId() {
@@ -123,14 +130,6 @@ public class ScheduleVo {
 
     public void setBusState(String busState) {
         this.busState = busState;
-    }
-
-    public Float getBusPrice() {
-        return busPrice;
-    }
-
-    public void setBusPrice(Float busPrice) {
-        this.busPrice = busPrice;
     }
 
     public Integer getBusAllNum() {

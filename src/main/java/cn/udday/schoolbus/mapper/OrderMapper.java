@@ -23,6 +23,6 @@ public interface OrderMapper extends BaseMapper<Order> {
     @Select("select o.*, u.*, s.*, r.*, b.* " +
             "from `order` o, school_bus_db.user u, schedule s, route r, bus b " +
             "where o.user_id=u.user_id and o.schedule_id=s.schedule_id " +
-            "and s.route_id=r.route_id and s.bus_id=b.bus_id and ${ew.sqlSegment}")
+            "and s.route_id=r.route_id and s.bus_id=b.bus_id and ${ew.sqlSegment} order by o.order_id ASC")
     IPage<OrderVo> queryAssociated(IPage<OrderVo> page, @Param("ew") Wrapper<OrderVo> wrapper);
 }

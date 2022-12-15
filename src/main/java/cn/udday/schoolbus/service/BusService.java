@@ -2,7 +2,6 @@ package cn.udday.schoolbus.service;
 
 public interface BusService {
     Object addBus(String busName,
-                  Float busPrice,
                   int busAllNum);
 
     Object deleteBus(int busId);
@@ -10,7 +9,6 @@ public interface BusService {
     Object changeBus(int busId,
                      String busName,
                      String busState,
-                     Float busPrice,
                      int busAllNum,
                      int busNum);
 

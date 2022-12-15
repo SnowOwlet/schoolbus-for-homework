@@ -20,7 +20,7 @@ public interface ScheduleMapper extends BaseMapper<Schedule> {
 
     @Select("select s.*, r.*, b.* " +
             "from schedule s, route r, bus b " +
-            "where s.route_id=r.route_id and s.bus_id=b.bus_id and ${ew.sqlSegment}")
+            "where s.route_id=r.route_id and s.bus_id=b.bus_id and ${ew.sqlSegment} order by s.schedule_id ASC")
     IPage<ScheduleVo> queryAssociated(IPage<ScheduleVo> page, @Param("ew") Wrapper<ScheduleVo> wrapper);
 
 }

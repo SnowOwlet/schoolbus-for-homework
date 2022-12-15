@@ -9,7 +9,6 @@ import java.util.Map;
 
 import static cn.udday.schoolbus.config.Config.TOKEN;
 
-//@CrossOrigin
 @RestController
 @RequestMapping("/API/user/")
 public class UserController {
@@ -46,13 +45,23 @@ public class UserController {
         return res;
     }
 
-    @GetMapping(value = "/login_out")
+    @PostMapping(value = "/change")
+    public Object change(@RequestHeader(TOKEN) String token, @RequestBody Map<String, String> data) {
+        String password = data.get("password");
+        String sex = data.get("sex");
+        String phone = data.get("phone");
+        String comment = data.get("comment");
+        Object res = userService.change(token,password, sex, phone,comment);
+        return res;
+    }
+
+    @PostMapping(value = "/login_out")
     public Object loginOut(@RequestHeader(value = TOKEN) String token) {
         Object res = userService.loginOut(token);
         return res;
     }
 
-    @GetMapping(value = "/all")
+    @PostMapping(value = "/all")
     public Object all(@RequestBody Map<String, String> data) {
         int pageNum = 1;
         int pageSize = 20;
@@ -60,6 +69,12 @@ public class UserController {
         pageSize = Integer.parseInt(data.get("page_size"));
         String userName = data.get("user_name");
         Object res = userService.all(pageNum, pageSize, userName);
+        return res;
+    }
+
+    @GetMapping(value = "/user")
+    public Object one(@RequestHeader(value = TOKEN) String token){
+        Object res = userService.one(token);
         return res;
     }
 }

@@ -13,8 +13,7 @@ public class Bus {
 
     //满员
     private String busState;
-    //价格
-    private Float busPrice;
+
     //人数
     private Integer busAllNum;
     //人数
@@ -26,7 +25,6 @@ public class Bus {
                 "busId=" + busId +
                 ", busName='" + busName + '\'' +
                 ", busState='" + busState + '\'' +
-                ", busPrice=" + busPrice +
                 ", busAllNum=" + busAllNum +
                 ", busNum=" + busNum +
                 '}';
@@ -55,14 +53,6 @@ public class Bus {
 
     public void setBusState(String busState) {
         this.busState = busState;
-    }
-
-    public Float getBusPrice() {
-        return busPrice;
-    }
-
-    public void setBusPrice(Float busPrice) {
-        this.busPrice = busPrice;
     }
 
     public Integer getBusAllNum() {
